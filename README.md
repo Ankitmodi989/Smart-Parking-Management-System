@@ -6,10 +6,11 @@ A software solution for automating the discovery, reservation, monitoring, and b
 
 | Name | Role |
 |---|---|
-| Amit Kumar | Team Lead / Backend Developer |
+| Anubhav Mittal | Team Lead / Documentation & Testing |
+| Amit Kumar | Backend Developer |
 | Ankit Modi | Frontend Developer |
 | Arpit Gupta | Database & System Design |
-| Anubhav Mittal | Documentation & Testing |
+
 
 *(Roles are suggested placeholders — update them to match actual responsibilities.)*
 
