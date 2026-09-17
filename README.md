@@ -1,133 +1,210 @@
-# Smart Parking Management System (SPMS)
-
-A software solution for automating the discovery, reservation, monitoring, and billing of parking spaces in a parking facility — built as a Software Engineering course project.
-
-## Team Members
-
-| Name | Role |
-|---|---|
-| Anubhav Mittal | Team Lead / Documentation & Testing |
-| Amit Kumar | Backend Developer |
-| Ankit Modi | Frontend Developer |
-| Arpit Gupta | Database & System Design |
-
-
-*(Roles are suggested placeholders — update them to match actual responsibilities.)*
+# Smart Parking Management System
 
 ## Project Overview
 
-Manual parking management leads to wasted driver time, underutilized parking spaces, revenue leakage, and poor visibility for facility administrators. SPMS solves this by giving drivers real-time slot availability, online reservation, and automated entry/exit detection, while giving administrators a dashboard to manage slots, pricing, and reports.
+The **Smart Parking Management System (SPMS)** is an end-to-end software solution designed to automate parking space discovery, slot reservation, vehicle entry/exit monitoring, fee calculation, and payment processing. Built as a Software Engineering course project (CS311L) at KIET Deemed to be University, SPMS addresses urban traffic congestion and parking inefficiencies by delivering real-time visibility and centralized management.
 
-### Key Features
-- Driver registration, login, and profile management
-- Real-time parking slot search and availability display
-- Advance slot reservation and cancellation
-- Automatic vehicle entry/exit detection (IoT sensors / ANPR camera)
-- Duration-based fee calculation and online payment processing
-- Digital receipts and booking history
-- Notifications for booking confirmation, payment status, and slot expiry
-- Admin dashboard for slot inventory, pricing rules, and occupancy/revenue reports
+The system connects drivers with available parking facilities through a responsive interface, while providing administrators with a powerful dashboard to control slot inventory, configure dynamic pricing, and monitor occupancy and revenue metrics.
 
-### Actors
-- **Driver** — searches, books, and pays for parking slots
-- **Admin** — manages slot inventory, pricing, and views reports
-- **Sensor / Camera (IoT/ANPR)** — detects vehicle entry and exit
-- **Payment Gateway** — processes online payments
+---
 
-## Tech Stack
+## Problem Statement
 
-> Update this section with your team's actual chosen technologies.
+Traditional manual parking management relies on physical attendants, paper tickets, and guesswork. Drivers waste significant time searching for open slots, causing congestion around parking venues, fuel wastage, and frustration. Facilities suffer from underutilized capacity, lack of real-time occupancy visibility, manual billing errors, and revenue leakage.
 
-| Layer | Technology |
-|---|---|
-| Frontend (Driver app) | e.g. React Native / Flutter |
-| Frontend (Admin dashboard) | e.g. React.js |
-| Backend | e.g. Node.js / Express or Spring Boot |
-| Database | e.g. MySQL / PostgreSQL |
-| Hardware | IoT sensors / ANPR camera module |
-| Payment Integration | e.g. Razorpay / Stripe API |
-| Version Control | Git & GitHub |
+---
 
-## Project Documentation
+## Objectives
 
-| Document | Description |
-|---|---|
-| `docs/SPMS_Requirement_Report.docx` | Elicited stakeholder requirements, FR/NFR list, constraints, MoSCoW prioritization |
-| `docs/SPMS_SRS.docx` | Software Requirements Specification (IEEE 830 format) |
-| `docs/uml/` | Use Case, Class, Sequence, State Chart, Activity, and Component diagrams |
+- **Automate Parking Management**: Eliminate manual ticketing and manual slot allocation.
+- **Provide Real-Time Availability**: Give drivers instant visibility into available parking slots.
+- **Enable Advance Reservations**: Allow drivers to search, reserve, and pay for parking slots in advance.
+- **Automate Entry/Exit Detection**: Integrate IoT sensors / ANPR camera events for seamless vehicle check-in and check-out.
+- **Streamline Billing & Payments**: Automatically calculate fees based on duration and process payments via digital gateways.
+- **Deliver Admin Analytics**: Provide facility administrators with detailed occupancy, revenue, and statistical reports.
 
-## Repository Structure
+---
+
+## Key Features
+
+### Driver Features
+- **User Registration & Login**: Account creation, authentication, and secure profile management.
+- **Parking Location Search**: Search parking facilities by location, distance, and rates.
+- **Real-Time Slot Availability**: Live grid display of available, reserved, and occupied parking slots.
+- **Slot Reservation & Cancellation**: Advance slot booking with flexible cancellation capability.
+- **Vehicle Entry/Exit Records**: Digital logging of vehicle check-in and check-out events.
+- **Parking Fee Calculation**: Automated duration-based fee calculation based on facility pricing rules.
+- **Payment Processing**: Secure online payment integration with instant digital receipt generation.
+- **Booking History**: Access past reservations, payment receipts, and active bookings.
+- **Notifications**: Automated alerts for booking confirmation, slot expiry, and payment status.
+
+### Administrator Features
+- **Slot & Facility Management**: Add, update, or disable parking locations and individual slots.
+- **Pricing Management**: Define base rates, hourly tariffs, and peak-hour pricing rules.
+- **Occupancy Monitoring**: Live dashboard displaying real-time facility occupancy percentages.
+- **Revenue & Statistical Reports**: Generate daily, weekly, and monthly financial and usage analytics.
+
+---
+
+## System Actors
+
+- **Driver**: Primary user who searches, reserves, pays for, and utilizes parking slots.
+- **Admin**: System manager who configures parking facilities, pricing, and monitors reports.
+- **Sensor / Camera (IoT/ANPR)**: External hardware or simulated interface detecting vehicle entry and exit events.
+- **Payment Gateway**: External payment service processing credit/debit card and digital wallet transactions.
+
+---
+
+## UML Diagrams
+
+Comprehensive UML 2.0 diagrams documenting the system architecture are available in the repository:
+
+- [Use Case Diagram](docs/uml/Use_Case_Diagram.pdf) — Complete view of system actors, use cases, and boundaries.
+- [Class Diagram](docs/uml/Class_Diagram.pdf) — Object-oriented domain classes, attributes, methods, and relationships.
+- [Sequence Diagram](docs/uml/Sequence_Diagram.pdf) — Detailed message flow for slot reservation and payment execution.
+- [Activity Diagram](docs/uml/Activity_Diagram.pdf) — End-to-end workflow covering check-in, parking, billing, and exit detection.
+- [State Diagram](docs/uml/State_Diagram.pdf) — Parking slot state lifecycle (Available, Reserved, Occupied, Maintenance).
+- [Combined UML Diagrams PDF](docs/uml/UML_Diagrams_Smart_Parking_Management_System.pdf) — Complete 7-page consolidated UML specification.
+
+---
+
+## Functional Requirements Summary
+
+Functional requirements (FR-01 to FR-30) are categorized into 8 core functional areas:
+1. **User Authentication & Profile**: Secure registration, login, JWT session management, profile editing.
+2. **Parking Location & Slot Management**: CRUD operations for parking sites and slot inventory.
+3. **Availability & Search**: Real-time slot status querying by location and slot type.
+4. **Slot Reservation & Cancellation**: Slot locking, reservation timestamping, cancellation handling.
+5. **Vehicle Entry & Exit Logging**: Timestamped entry/exit event processing via IoT/ANPR triggers.
+6. **Billing & Payment Records**: Automated tariff computation, payment gateway integration, receipt generation.
+7. **Notifications & User History**: System alerts and historical transaction logging.
+8. **Admin Dashboard & Reports**: Analytics visualization for occupancy and financial performance.
+
+---
+
+## Non-Functional Requirements
+
+- **Performance**: Search and availability response times under 2 seconds; concurrent user handling.
+- **Security**: Password hashing (bcrypt), HTTPS encrypted data transmission, role-based access control (RBAC).
+- **Reliability**: Transactional integrity ensuring no double-booking of slots (99.9% uptime target).
+- **Usability**: Responsive, intuitive UI optimized for both mobile devices and desktop displays.
+- **Maintainability**: Modular 3-tier architecture with decoupled frontend, backend API, and database services.
+- **Scalability**: Database indexing and scalable REST API structure to accommodate facility expansion.
+
+---
+
+## Technology Stack
+
+- **Frontend**: React.js / HTML5 / CSS3 / JavaScript (ES6+)
+- **Backend API**: Node.js / Express.js
+- **Database**: MySQL / PostgreSQL (Relational schema with ACID compliance)
+- **External Interfaces**: RESTful APIs for Payment Gateway (Razorpay/Stripe) and IoT/ANPR event webhooks
+- **Version Control**: Git & GitHub
+
+---
+
+## Project Structure
 
 ```
-smart-parking-management-system/
-├── README.md
-├── docs/
-│   ├── SPMS_Requirement_Report.docx
-│   ├── SPMS_SRS.docx
-│   └── uml/
-│       ├── use-case-diagram.png
-│       ├── class-diagram.png
-│       ├── sequence-diagram.png
-│       ├── state-diagram.png
-│       ├── activity-diagram.png
-│       └── component-diagram.png
-├── frontend/
-│   └── (driver app / admin dashboard source code)
-├── backend/
-│   └── (API server source code)
-├── database/
-│   └── (schema, migrations, seed data)
-└── tests/
-    └── (unit and integration tests)
+Smart-Parking-Management-System/
+│
+├── README.md                                    # Main project documentation
+├── .gitignore                                   # Workspace git ignore rules
+│
+├── docs/                                        # Comprehensive engineering documentation
+│   ├── Requirement_Report.pdf                   # Stakeholder requirements & FR/NFR analysis
+│   ├── SRS_Smart_Parking_Management_System.pdf  # IEEE 830 compliant Software Requirements Specification
+│   ├── DFD.md                                   # Data Flow Diagrams (Context & Level 1)
+│   │
+│   └── uml/                                     # UML 2.0 Diagrams
+│       ├── UML_Diagrams_Smart_Parking_Management_System.pdf  # Combined UML specification PDF
+│       ├── Use_Case_Diagram.pdf                 # Use Case Diagram
+│       ├── Class_Diagram.pdf                    # Class Diagram
+│       ├── Sequence_Diagram.pdf                 # Sequence Diagram
+│       ├── Activity_Diagram.pdf                 # Activity Diagram
+│       └── State_Diagram.pdf                    # State Diagram
+│
+├── src/                                         # Source code repository modules
+│   └── README.md                                # Architecture layout & module breakdown
+│
+└── assets/                                      # Supporting images and SVG diagrams
+    ├── context-diagram.svg
+    ├── level-1-dfd.svg
+    └── Use_Case_Diagram.jpg
 ```
 
-## Getting Started
+---
 
-> Fill in once the codebase is set up.
+## Installation and Setup
 
 ### Prerequisites
-- Node.js (or relevant runtime) vX.X+
-- MySQL/PostgreSQL vX.X+
-- Git
+- **Node.js** (v18.0.0 or higher)
+- **npm** (v9.0.0 or higher)
+- **MySQL Server** (v8.0 or higher)
 
-### Installation
-```bash
-git clone https://github.com/<org>/smart-parking-management-system.git
-cd smart-parking-management-system
-# install backend dependencies
-cd backend && npm install
-# install frontend dependencies
-cd ../frontend && npm install
-```
+### Setup Instructions
 
-### Running the Project
-```bash
-# start backend server
-cd backend && npm start
-# start frontend
-cd frontend && npm start
-```
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/Anubhavmittal07/Smart-Parking-Management-System.git
+   cd Smart-Parking-Management-System
+   ```
 
-### Environment Variables
-Create a `.env` file in `backend/` with:
-```
-DB_HOST=
-DB_USER=
-DB_PASSWORD=
-DB_NAME=
-PAYMENT_GATEWAY_API_KEY=
-JWT_SECRET=
-```
+2. **Backend Setup**:
+   ```bash
+   cd src/backend
+   npm install
+   ```
 
-## Contribution Guidelines
-1. Create a feature branch from `main`: `git checkout -b feature/<name>`
-2. Commit with clear messages describing the change
-3. Push and open a Pull Request for review
-4. At least one team member must review before merging
-5. Keep documentation (`docs/`) updated when requirements or design change
+3. **Database Configuration**:
+   - Create a MySQL database named `spms_db`.
+   - Import the schema from `src/database/schema.sql`.
+   - Configure database credentials in `src/backend/.env`.
 
-## Project Status
-🚧 In Development — Requirement Analysis and Design (UML) phases complete. Implementation in progress.
+4. **Frontend Setup**:
+   ```bash
+   cd ../frontend
+   npm install
+   ```
 
-## License
-This project is developed for academic purposes as part of a Software Engineering course.
+5. **Run the Application**:
+   ```bash
+   # Start backend API (Port 5000)
+   cd src/backend
+   npm start
+
+   # Start frontend client (Port 3000)
+   cd src/frontend
+   npm start
+   ```
+
+---
+
+## Documentation
+
+Direct links to the formal project deliverables:
+
+- [Requirement Report](docs/Requirement_Report.pdf)
+- [Software Requirements Specification (SRS)](docs/SRS_Smart_Parking_Management_System.pdf)
+- [UML Diagrams Documentation](docs/uml/UML_Diagrams_Smart_Parking_Management_System.pdf)
+- [Data Flow Diagrams (DFD)](docs/DFD.md)
+
+---
+
+## Team Members
+
+| Name | Role | Institution |
+|---|---|---|
+| **Anubhav Mittal** | Team Lead / Documentation & Testing | KIET Deemed to be University |
+| **Amit Kumar** | Backend Developer | KIET Deemed to be University |
+| **Ankit Modi** | Frontend Developer | KIET Deemed to be University |
+| **Arpit Gupta** | Database & System Design | KIET Deemed to be University |
+
+---
+
+## Future Scope
+
+- **Mobile Application**: Native mobile app development for iOS and Android.
+- **License Plate Recognition (ANPR) Integration**: Direct integration with hardware cameras for automatic barrier gate control.
+- **EV Charging Slot Booking**: Specialized slot reservation for electric vehicle charging stations.
+- **Dynamic Demand Pricing**: AI-based dynamic pricing algorithm based on peak hours and historical occupancy rates.
